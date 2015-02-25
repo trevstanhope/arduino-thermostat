@@ -18,12 +18,19 @@ const int SERVO_PIN = 9;
 const int DHT_TYPE = 22;
 const int BAUD = 9600;
 const int IDEAL_TEMP = 20;
+const float K_P = 1.0;
+const float K_I = 0.5;
+const float K_D = 0.0;
+const int SERVO_MIN = 0;
+const int SERVO_CENTER = 90;
+const int SERVO_MAX = 180 
 
 /* --- Variables --- */
 double Setpoint, Input, Output;
-PID myPID(&Input, &Output, &Setpoint,2,5,1, DIRECT);
+PID myPID(&Input, &Output, &Setpoint,K_P, K_I, K_D, DIRECT);
 DHT dht(DHT_PIN, DHT_TYPE);
 Servo servo;
+int pwm;
 
 void setup() {
   
@@ -42,6 +49,13 @@ void loop() {
   
   Input = dht.readTemperature();
   myPID.Compute();
-  servo.write(Output);
+  pwm = Output + SERVO_CENTER;
+  if (pwm > SERVO_MAX) {
+     pwm = SERVO_MAX;
+   }
+  else if (pwm < SERVO_MAX) {
+    pwm = SERVO_MIN;
+  }
+  servo.write(pwm);
 
 }
