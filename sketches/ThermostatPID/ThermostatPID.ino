@@ -1,5 +1,10 @@
 /*
 ThermostatPID.ino - Arduino rotary thermostat PID controller
+
+Input: DHT22 Temperature/Humidity Sensor
+System: PID
+Ouptut: Servo motor
+
 */
 
 /* --- Libraries --- */
@@ -22,7 +27,7 @@ Servo servo;
 void setup() {
   
   /* --- PID --- */
-  Input = analogRead(0);
+  Input = 
   Setpoint = 100;
   myPID.SetMode(AUTOMATIC);
 

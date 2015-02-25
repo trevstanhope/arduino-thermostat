@@ -1,5 +1,10 @@
 /*
 ThermostatFuzzy.ino - Arduino rotary thermostat fuzzy controller
+
+Input: DHT22 Temperature/Humidity Sensor
+System: Fuzzy Logic
+Ouptut: Servo motor
+
 */
 
 /* --- Libraries --- */
@@ -31,9 +36,9 @@ void setup() {
   /* ---- Fuzzy --- */
   // Fuzzy Input is temperature
   FuzzyInput* temperature = new FuzzyInput(1);
-  FuzzySet* cold = new FuzzySet(0, 20, 20, 40);
-  FuzzySet* ideal = new FuzzySet(30, 50, 50, 70);
-  FuzzySet* hot = new FuzzySet(60, 80, 80, 80);
+  FuzzySet* cold = new FuzzySet(0, 10, 10, 20);
+  FuzzySet* ideal = new FuzzySet(18, 20, 20, 22);
+  FuzzySet* hot = new FuzzySet(20, 25, 25, 30);
   temperature->addFuzzySet(cold);
   temperature->addFuzzySet(ideal);
   temperature->addFuzzySet(hot);
@@ -41,9 +46,9 @@ void setup() {
   
   // Fuzzy Output is rotor
   FuzzyOutput* rotor = new FuzzyOutput(1);
-  FuzzySet* CCW = new FuzzySet(0, 10, 10, 20); 
-  FuzzySet* zero = new FuzzySet(10, 20, 30, 40); 
-  FuzzySet* CW = new FuzzySet(30, 40, 40, 50); 
+  FuzzySet* CCW = new FuzzySet(0, 45, 45, 90); 
+  FuzzySet* zero = new FuzzySet(45, 90, 90, 135); 
+  FuzzySet* CW = new FuzzySet(90, 135, 135, 180); 
   rotor->addFuzzySet(CCW);
   rotor->addFuzzySet(zero); 
   rotor->addFuzzySet(CW); 
