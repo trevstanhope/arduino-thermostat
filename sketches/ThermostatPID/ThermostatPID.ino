@@ -23,7 +23,7 @@ const float K_I = 0.5;
 const float K_D = 0.0;
 const int SERVO_MIN = 0;
 const int SERVO_CENTER = 90;
-const int SERVO_MAX = 180 
+const int SERVO_MAX = 180;
 
 /* --- Variables --- */
 double Setpoint, Input, Output;
